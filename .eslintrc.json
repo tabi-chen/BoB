@@ -16,7 +16,14 @@
         "no-throw-literal": "warn",
         "semi": "off"
     },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+      },    
     "ignorePatterns": [
+        "node_modules",
         "out",
         "dist",
         "**/*.d.ts"

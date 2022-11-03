@@ -14,32 +14,39 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands":[
+    "commands": [
       {
-        "command": "bob.inputTestContext",
-        "title": "Input Test Context"
+        "command": "bob.featureCodeGen.genFeature",
+        "title": "BoB: Generate a new feature and implementation file"
       },
       {
-        "command": "bob.testCommand",
-        "title": "test command"
+        "command": "bob.featureCodeGen.addScenario",
+        "title": "BoB: Add a scenario to the cursor position"
+      },
+      {
+        "command": "bob.featureCodeGen.addStep",
+        "title": "BoB: Add a step to the cursor position"
       }
     ],
-    "configuration":[
+    "configuration": [
       {
         "title": "BoB settings",
         "properties": {
           "bob.newFeaturePath": {
             "description": "Path of new test created",
-            "type": [
-              "string"
-            ],
+            "type": "string",
             "required": false,
-            "default": "features/" 
+            "default": "features/"
+          },
+          "bob.newStepImplPath": {
+            "description": "Path of new step_impl created",
+            "type": "string",
+            "required": false,
+            "default": "features/steps"
           }
         }
       }
     ]
-
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -53,19 +60,26 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
-    "eslint": "^8.24.0",
+    "@types/vscode": "^1.72.0",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.26.0",
+    "eslint-plugin-typescript": "^0.14.0",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
-    "typescript": "^4.8.4",
+    "pre-commit": "^1.2.2",
     "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "typescript-eslint-parser": "^22.0.0",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "@vscode/test-electron": "^2.1.5"
-  }
+    "webpack-cli": "^4.10.0"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
